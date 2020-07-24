@@ -1,10 +1,11 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { ComponentChecker } from '../component.checker';
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskComponent extends ComponentChecker {
   @Input() task: any;
