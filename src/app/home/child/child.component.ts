@@ -1,4 +1,4 @@
-import { Component, Input, HostListener, DoCheck, ChangeDetectionStrategy, OnChanges, AfterViewChecked } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ComponentChecker } from '../component.checker';
 
 @Component({
