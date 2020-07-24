@@ -1,4 +1,4 @@
-import { Component, NgZone } from '@angular/core';
+import { Component, NgZone, TrackByFunction } from '@angular/core';
 import { scan, switchMap } from 'rxjs/operators';
 import { interval } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -30,6 +30,8 @@ export class HomeComponent {
     // { id: 15, visible: true, name: 'LALALALA' },
     // { id: 16, visible: true, name: 'LALALALA' },
   ];
+
+  public readonly trackChildById: TrackByFunction<number> = (_, child: any) => child.id;
 
   constructor(private readonly http: HttpClient, private readonly zone: NgZone) {
     interval(1000)
