@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+
+  > div {
+    flex: 1;
+  }
+}
+
+.children-container {
+  padding: 0 10px;
+  max-height: calc(100vh - 20px);
+  overflow: auto;
+}
+
+.log-container {
+  padding: 0 10px;
+  max-height: calc(100vh - 20px);
+  overflow: auto;
+}

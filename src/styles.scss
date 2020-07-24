@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+.checking {
+  display: block;
+  transition: all 0.3s ease;
+  border: 3px dashed transparent;
+
+  &.changed {
+    border-color: #ffc600;
+  }
+}

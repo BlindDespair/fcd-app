@@ -1,0 +1,8 @@
+<div class="container">
+  <div class="children-container">
+    <app-child *ngFor="let child of children" [child]="child"></app-child>
+  </div>
+  <div class="log-container">
+    <app-task *ngFor="let t of tasks$ | async" [task]="t"></app-task>
+  </div>
+</div>
