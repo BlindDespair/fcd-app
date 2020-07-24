@@ -38,7 +38,6 @@ export class HomeComponent {
         if (res.id % 2 === 0) {
           const changeIndex = Math.floor(Math.random() * this.children.length);
           this.children = this.children.map((child, index) => (index === changeIndex ? { ...child, name: child.name + res.id } : child));
-          console.log(changeIndex);
         }
       });
 
