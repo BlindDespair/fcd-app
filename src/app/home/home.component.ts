@@ -34,14 +34,20 @@ export class HomeComponent {
   public readonly trackChildById: TrackByFunction<number> = (_, child: any) => child.id;
 
   constructor(private readonly http: HttpClient, private readonly zone: NgZone) {
-    interval(1000)
-      .pipe(switchMap((v) => this.http.get(`https://jsonplaceholder.typicode.com/todos/${v + 1}`)))
-      .subscribe((res: any) => {
-        if (res.id % 2 === 0) {
-          const changeIndex = Math.floor(Math.random() * this.children.length);
-          this.children = this.children.map((child, index) => (index === changeIndex ? { ...child, name: child.name + res.id } : child));
-        }
-      });
+    this.zone.runOutsideAngular(() => {
+      interval(1000)
+        .pipe(switchMap((v) => this.http.get(`https://jsonplaceholder.typicode.com/todos/${v + 1}`)))
+        .subscribe((res: any) => {
+          if (res.id % 2 === 0) {
+            const changeIndex = Math.floor(Math.random() * this.children.length);
+            this.zone.run(() => {
+              this.children = this.children.map((child, index) =>
+                index === changeIndex ? { ...child, name: child.name + res.id } : child
+              );
+            });
+          }
+        });
+    });
 
     const cdZoneSpec = Zone.current.get('ChangeDetectionTrackingZone');
     this.tasks$ = cdZoneSpec.performance$.pipe(
